@@ -13,6 +13,7 @@ return {
 				side = "left",
 				auto_resize = true,
 			},
+			enable_diagnostics = false,
 		})
 	end,
 	keys = {
