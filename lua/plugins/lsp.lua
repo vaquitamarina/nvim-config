@@ -18,32 +18,30 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			--Servers
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.vtsls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.cssls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.phpactor.setup({
-				-- capabilities = capabilities,
-			})
+
+			local servers = {
+				"lua_ls",
+				"vtsls",
+				"html",
+				"cssls",
+				"clangd",
+			}
+
+			for _, server in ipairs(servers) do
+				vim.lsp.config[server] = {
+					capabilities = capabilities,
+				}
+				vim.lsp.enable(server)
+			end
+
+			vim.lsp.config.phpactor = {}
 			vim.lsp.enable("phpactor")
-			--
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, {})
+
+			local opts = { noremap = true, silent = true }
+			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+			vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 		end,
 	},
 }
