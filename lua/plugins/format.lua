@@ -13,6 +13,7 @@ return {
 				html = { "prettier" },
 				css = { "prettier" },
 				python = { "isort", "black" },
+				sql = { "pg_format" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

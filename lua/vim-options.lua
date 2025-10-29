@@ -9,3 +9,5 @@ vim.opt.rnu = true
 vim.opt.wrap = false
 
 vim.g.mapleader = " "
+
+vim.g.omni_sql_no_default_maps = 1

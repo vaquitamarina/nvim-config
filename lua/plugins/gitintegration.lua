@@ -4,4 +4,7 @@ return {
 		version = "*",
 		config = true,
 	},
+	{
+		"lewis6991/gitsigns.nvim",
+	},
 }
